@@ -6,7 +6,12 @@ const server = jsonServer.create()
 const router = jsonServer.router(path.join(__dirname, 'db.json'))
 const middlewares = jsonServer.defaults()
 
-server.use(cors())
+const corsOptions = {
+  origin: ["https://zany-plum-crow-veil.cyclic.app"],
+  optionsSuccessStatus: 200 // For legacy browser support
+}
+
+server.use(cors(corsOptions))
 server.use(jsonServer.bodyParser)
 server.use(middlewares)
 server.use(router)
